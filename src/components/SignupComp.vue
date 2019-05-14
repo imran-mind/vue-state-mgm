@@ -31,14 +31,14 @@ export default {
       e.preventDefault();
       this.$router.push("/");
     },
-    doSignup(e) {
+    async doSignup (e) {
       e.preventDefault();
       const payload = {
         name: this.name,
         username: this.username,
         password: this.password
       };
-      this.signupAction(payload);
+      await this.signupAction(payload);
       this.$router.push('/todos')
     }
   }

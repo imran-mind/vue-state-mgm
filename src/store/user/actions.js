@@ -1,8 +1,16 @@
+import { userLogin, userSignup } from "../../api/user";
+
 export default {
-    loginAction: ({commit}, payload) =>{
-        commit('DO_LOGIN', payload)
+    loginAction: async({commit}, payload) =>{
+        let userInfo =await userLogin(payload);
+        if(userInfo){
+            commit('DO_LOGIN', userInfo.data.data)
+        }
     },
-    signupAction: ({commit}, payload) =>{
-        commit('DO_SIGNUP',payload);
+    signupAction: async ({commit}, payload) =>{
+        let signupResponse = await userSignup(payload);
+        if(signupResponse){
+            commit('DO_SIGNUP',signupResponse.data.data);
+        }
     }
 }

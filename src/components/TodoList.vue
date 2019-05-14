@@ -3,6 +3,7 @@
     <div class="left">
       <a @click="goToLogin">Logout</a>
       <h1>{{title}}</h1>
+      Welcome to <span style="color:green">{{userInfo.name}}</span>
       <form @submit.prevent="addLink">
         <input class="link-input" type="text" placeholder="Add a Todo" v-model="newLink"/>
       </form>
@@ -35,7 +36,8 @@ export default {
   computed: {
     ...mapState({
       title: state => state.todoModule.title,
-      links: state => state.todoModule.links
+      links: state => state.todoModule.links,
+      userInfo: state => state.userModule.userInfo
     })
     // result () {
     //   return this.$store.getters['state/todoModule/title']

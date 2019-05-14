@@ -1,5 +1,3 @@
 export default {
-    username: "",
-    password: "",
-    name: ""
+    userInfo: null
 };
