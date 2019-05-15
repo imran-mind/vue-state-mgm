@@ -20,13 +20,15 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { userLogin } from "../api/user";
 export default {
   name: "Login",
   data() {
     return {
       username: "",
       password: "",
-      isValidLoginData: false
+      isValidLoginData: false,
+      isServerError: false
     };
   },
   computed: {
@@ -43,10 +45,20 @@ export default {
         password: this.password
       };
       if (this.isValidCreds(payload)) {
-        await this.loginAction(payload);
-        this.username = "";
-        this.password = "";
-        this.$router.push("/todos");
+        let userInfo = await userLogin(payload);
+        debugger
+        console.log('----', userInfo);
+        if (userInfo.status === 200) {
+          await this.loginAction(userInfo.data.data);
+          this.username = "";
+          this.password = "";
+          this.$router.push("/todos");
+        } else if (userInfo.status == 400) {
+          this.isValidLoginData = true;
+        } else {
+          this.isServerError = true;
+          this.isValidLoginData = true;
+        }
       } else {
         this.isValidLoginData = true;
       }
@@ -56,7 +68,7 @@ export default {
       this.$router.push("/signup");
     },
     isValidCreds(data) {
-      if (data && data.email !== '' && data.password !== '') {
+      if (data && data.email !== "" && data.password !== "") {
         return true;
       }
       return false;

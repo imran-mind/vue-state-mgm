@@ -13,6 +13,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { setTimeout } from 'timers';
 export default {
   data() {
     return {
@@ -39,7 +40,9 @@ export default {
         password: this.password
       };
       await this.signupAction(payload);
-      this.$router.push('/todos')
+      setTimeout(()=>{
+        this.$router.push('/todos')
+      }, 2000);
     }
   }
 };
