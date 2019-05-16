@@ -4,26 +4,28 @@ import {
 } from '../constants/user-constants';
 
 
-export const userLogin = data => {
-    return axios({
-        method: 'POST',
-        url: userConst.login_url,
-        data: data
-    }).then(result => {
-        return result;
-    }, error => {
+export const userLogin = async data => {
+    try {
+        const userResult = await axios({
+            method: 'POST',
+            url: userConst.login_url,
+            data: data
+        });
+        return userResult;
+    } catch (error) {
         return error && error.response;
-    });
+    }
 }
 
 export const userSignup = async data => {
-    return axios({
-        method: 'POST',
-        url: userConst.signup_url,
-        data: data
-    }).then(signupResult => {
+    try {
+        const signupResult = await axios({
+            method: 'POST',
+            url: userConst.signup_url,
+            data: data
+        });
         return signupResult;
-    }, signupError => {
+    } catch (signupError) {
         return signupError && signupError.response;
-    });
+    }
 }
