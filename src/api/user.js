@@ -11,14 +11,19 @@ export const userLogin = data => {
         data: data
     }).then(result => {
         return result;
-      }, error => {
+    }, error => {
         return error && error.response;
-      });
+    });
 }
 
 export const userSignup = async data => {
-    let response = await axios.post(userConst.signup_url, data);
-    if (response) {
-        return response;
-    }
+    return axios({
+        method: 'POST',
+        url: userConst.signup_url,
+        data: data
+    }).then(signupResult => {
+        return signupResult;
+    }, signupError => {
+        return signupError && signupError.response;
+    });
 }
