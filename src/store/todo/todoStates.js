@@ -3,5 +3,6 @@ export default {
     password: "",
     name: "",
     title: "Todos",
-    links: []
+    links: [],
+    newLink: ""
 };

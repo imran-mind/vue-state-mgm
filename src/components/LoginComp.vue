@@ -46,7 +46,7 @@ export default {
       };
       if (this.isValidCreds(payload)) {
         let userInfo = await userLogin(payload);
-        console.log('----', userInfo);
+        console.log("----", userInfo);
         if (userInfo.status === 200) {
           await this.loginAction(userInfo.data.data);
           this.username = "";

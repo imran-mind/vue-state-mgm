@@ -2,8 +2,8 @@
   <div class="hello">
     <div class="left">
       <a @click="goToLogin">Logout</a>
-      <h1>{{title}}</h1>
-      Welcome to <span style="color:green">{{userInfo.name}}</span>
+      <!-- <h1>{{title}}</h1> -->
+      <!-- Welcome to <span style="color:green">{{userInfo.name}}</span> -->
       <form @submit.prevent="addLink">
         <input class="link-input" type="text" placeholder="Add a Todo" v-model="newLink"/>
       </form>
@@ -26,9 +26,10 @@ import Stats from '@/components/Stats.vue';
 export default {
   name: "TodoList",
   data (){
-    return {
-      newLink: ''
-    }
+    // return {
+    //   newLink: ''
+    // }
+    
   },
   components:{
     Stats
@@ -37,8 +38,10 @@ export default {
     ...mapState({
       title: state => state.todoModule.title,
       links: state => state.todoModule.links,
+      newLink: state => state.todoModule.newLink,
       userInfo: state => state.userModule.userInfo
     })
+
     // result () {
     //   return this.$store.getters['state/todoModule/title']
     // }
